@@ -7,12 +7,18 @@ public class Task {
     private int end;
     private int interval;
     private boolean active;
-    public Task(String title, int time) {
+    public Task(String title, int time) throws IllegalArgumentException{
+        if (time < 0) {
+            throw new IllegalArgumentException();
+        }
         this.title = title;
         this.time = time;
         this.active = false;
     }
-    public Task(String title, int start, int end, int interval) {
+    public Task(String title, int start, int end, int interval) throws IllegalArgumentException{
+        if (start < 0 || end < 0 || interval <= 0) {
+            throw new IllegalArgumentException();
+        }
         this.title = title;
         this.start = start;
         this.end = end;
@@ -38,7 +44,10 @@ public class Task {
             return time;
         }
     }
-    public void setTime (int time) {
+    public void setTime (int time) throws IllegalArgumentException{
+        if (time < 0) {
+            throw new IllegalArgumentException();
+        }
         this.time = time;
         if (this.interval != 0) {
             this.interval = 0;
@@ -65,7 +74,10 @@ public class Task {
             return interval;
         }
     }
-    public void setTime(int start, int end, int interval) {
+    public void setTime(int start, int end, int interval) throws IllegalArgumentException{
+        if (start < 0 || end < 0 || interval <= 0) {
+            throw new IllegalArgumentException();
+        }
         this.start = start;
         this.end = end;
         if (this.interval == 0) {

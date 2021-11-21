@@ -5,28 +5,30 @@ import java.util.Arrays;
 public class ArrayTaskList {
     private int amount = 0;
     private Task[] tasks = new Task[7];
-    public void add (Task task) {
+    public void add (Task task) throws IllegalArgumentException{
+        if (task == null) {
+            throw new IllegalArgumentException();
+        }
         amount += 1;
         tasks = Arrays.copyOf(tasks, tasks.length + amount);
         int i;
-        if (task != null) {
-            for (i = 0; i < amount; i++) {
-                if (tasks[i] == null) {
-                    tasks[i] = task;
-                }
+        for (i = 0; i < amount; i++) {
+            if (tasks[i] == null) {
+                tasks[i] = task;
             }
         }
     }
-    public boolean remove (Task task) {
+    public boolean remove (Task task) throws IllegalArgumentException{
+        if (task == null) {
+            throw new IllegalArgumentException();
+        }
         int i;
-        if (task != null) {
-            for (i = 0; i < size(); i++) {
-                if (tasks[i] == task) {
-                    System.arraycopy(tasks, i + 1, tasks, i, tasks.length - i - 1);
-                    tasks = Arrays.copyOf(tasks, tasks.length - 1);
-                    amount -= 1;
-                    return true;
-                }
+        for (i = 0; i < size(); i++) {
+            if (tasks[i] == task) {
+                System.arraycopy(tasks, i + 1, tasks, i, tasks.length - i - 1);
+                tasks = Arrays.copyOf(tasks, tasks.length - 1);
+                amount -= 1;
+                return true;
             }
         }
         return false;
@@ -34,7 +36,10 @@ public class ArrayTaskList {
     public int size () {
         return amount;
     }
-    public Task getTask (int index) {
+    public Task getTask (int index) throws IndexOutOfBoundsException{
+        if (index < 0 || index >= size()) {
+            throw new IndexOutOfBoundsException();
+        }
         return tasks[index];
     }
     public ArrayTaskList incoming (int from, int to) {
