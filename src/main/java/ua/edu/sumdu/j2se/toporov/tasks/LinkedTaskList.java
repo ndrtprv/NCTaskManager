@@ -1,6 +1,6 @@
 package ua.edu.sumdu.j2se.toporov.tasks;
 
-public class LinkedTaskList {
+public class LinkedTaskList extends AbstractTaskList{
     private Node start;
     private Node end;
     static class Node {
@@ -68,6 +68,12 @@ public class LinkedTaskList {
         }
         return begin.task;
     }
+
+    @Override
+    public ListTypes.types getType() {
+        return ListTypes.types.LINKED;
+    }
+
     public LinkedTaskList incoming (int from, int to) {
         LinkedTaskList tasks1 = new LinkedTaskList();
         int i;

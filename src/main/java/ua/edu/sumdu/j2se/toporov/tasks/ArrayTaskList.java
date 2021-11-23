@@ -2,7 +2,7 @@ package ua.edu.sumdu.j2se.toporov.tasks;
 
 import java.util.Arrays;
 
-public class ArrayTaskList {
+public class ArrayTaskList extends AbstractTaskList {
     private int amount = 0;
     private Task[] tasks = new Task[7];
     public void add (Task task) throws IllegalArgumentException{
@@ -42,6 +42,12 @@ public class ArrayTaskList {
         }
         return tasks[index];
     }
+
+    @Override
+    public ListTypes.types getType() {
+        return ListTypes.types.ARRAY;
+    }
+
     public ArrayTaskList incoming (int from, int to) {
         ArrayTaskList tasks1 = new ArrayTaskList();
         int i;
